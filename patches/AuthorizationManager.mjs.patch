@@ -1,0 +1,15 @@
+diff --git a/services/web/app/src/Features/Authorization/AuthorizationManager.mjs b/services/web/app/src/Features/Authorization/AuthorizationManager.mjs
+index b359380..dbfe571 100644
+--- a/services/web/app/src/Features/Authorization/AuthorizationManager.mjs
++++ b/services/web/app/src/Features/Authorization/AuthorizationManager.mjs
+@@ -175,6 +175,10 @@ async function getPrivilegeLevelForProjectWithUser(
+     return privilegeLevel
+   }
+
++  if (projectAccess.publicAccessLevel() === PublicAccessLevels.TOKEN_BASED) {
++    return PrivilegeLevels.READ_AND_WRITE
++  }
++
+   if (!opts.ignorePublicAccess) {
+     // Legacy public-access system
+     // User is present (not anonymous), but does not have direct access

@@ -1,0 +1,26 @@
+diff --git a/services/web/app/src/Features/Project/ProjectGetter.mjs b/services/web/app/src/Features/Project/ProjectGetter.mjs
+index 6cb74ae..e34b67a 100644
+--- a/services/web/app/src/Features/Project/ProjectGetter.mjs
++++ b/services/web/app/src/Features/Project/ProjectGetter.mjs
+@@ -91,6 +91,21 @@ const ProjectGetter = {
+       review: projects.review || [],
+     }
+
++    const knownProjectIds = new Set(
++      Object.values(result)
++        .flat()
++        .map(project => project._id.toString())
++    )
++    const linkSharedProjects = await Project.find(
++      { publicAccesLevel: 'tokenBased', owner_ref: { $ne: userId } },
++      fields
++    ).exec()
++    for (const project of linkSharedProjects || []) {
++      if (!knownProjectIds.has(project._id.toString())) {
++        result.tokenReadAndWrite.push(project)
++      }
++    }
++
+     // Remove duplicate projects. The order of result values is determined by the order they occur.
+     const tempAddedProjectsIds = new Set()
+     const filteredProjects = Object.entries(result).reduce((prev, current) => {
