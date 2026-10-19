@@ -6,3 +6,4 @@ RUN tlmgr update --self --all && \
 COPY patches/ /tmp/patches/
 RUN patch /overleaf/services/web/app/src/Features/Project/ProjectGetter.mjs < /tmp/patches/ProjectGetter.mjs.patch
 RUN patch /overleaf/services/web/app/src/Features/Authorization/AuthorizationManager.mjs < /tmp/patches/AuthorizationManager.mjs.patch
+RUN patch /overleaf/services/web/modules/authentication/oidc/app/src/OIDCAuthenticationManager.mjs < /tmp/patches/OIDCAuthenticationManager.mjs.patch
