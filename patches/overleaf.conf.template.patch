@@ -1,0 +1,13 @@
+diff --git a/server-ce/nginx/overleaf.conf.template b/server-ce/nginx/overleaf.conf.template
+index 34ff635..b0cfb7c 100644
+--- a/server-ce/nginx/overleaf.conf.template
++++ b/server-ce/nginx/overleaf.conf.template
+@@ -1,5 +1,7 @@
+ server {
+-	listen         80;
++	listen         443 ssl;
++	ssl_certificate     /etc/ssl/overleaf/overleaf.crt;
++	ssl_certificate_key /etc/ssl/overleaf/overleaf.key;
+ 	server_name    _; # Catch all, see http://nginx.org/en/docs/http/server_names.html
+ 
+ 	root /overleaf/services/web/public/;
