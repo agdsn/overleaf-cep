@@ -6,8 +6,8 @@ index 34ff635..b0cfb7c 100644
  server {
 -	listen         80;
 +	listen         443 ssl;
-+	ssl_certificate     /etc/ssl/overleaf/overleaf.crt;
-+	ssl_certificate_key /etc/ssl/overleaf/overleaf.key;
++	ssl_certificate     /etc/ssl/overleaf/tls.crt;
++	ssl_certificate_key /etc/ssl/overleaf/tls.key;
  	server_name    _; # Catch all, see http://nginx.org/en/docs/http/server_names.html
  
  	root /overleaf/services/web/public/;
